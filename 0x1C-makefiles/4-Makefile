@@ -1,24 +1,22 @@
-# A complete Makefile
-
 CC = gcc
-OBJ = $(SRC:.c=.o)
-NAME = school
 SRC = main.c school.c
+OBJ = $(patsubst %.c,%.o,$(SRC))
+NAME = school
+RM = rm
 CFLAGS = -Wall -Werror -Wextra -pedantic
-RM = rm -f
-
-all: $(OBJ)
-	$(CC) $? -o $(NAME)
-
-clean:
-	$(RM) *~ $(NAME)
-
-fclean: clean oclean
-
-oclean:
-	$(RM) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+clean:
+	$(RM) -f *~ $(NAME)
+
+oclean:
+	$(RM) -f $(OBJ)
+
+fclean: clean oclean
 
 re: oclean all

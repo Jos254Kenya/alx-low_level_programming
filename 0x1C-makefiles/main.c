@@ -3,10 +3,10 @@
 /**
  * main - Entry point
  *
- * Return: Always 
+ * Return: Always
  */
 int main(void)
 {
-  print_holberton();
-  return (EXIT_SUCCESS);
+	print_holberton();
+	return (EXIT_SUCCESS);
 }

@@ -1,22 +1,21 @@
-# Exucutable file with variable and deletes all temporary files
-
 CC = gcc
 SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
+OBJ = $(patsubst %.c,%.o,$(SRC))
 NAME = school
-RM = rm -f
-
-all: $(OBJ)
-	$(CC) $? -o $(NAME)
+RM = rm
 
 %.o: %.c
 	$(CC) -c -o $@ $<
 
-oclean:
-	$(RM) $(OBJ)
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o holberton
 
 clean:
-	$(RM) *~ $(NAME)
+	$(RM) -f *~ $(NAME)
+
+oclean:
+	$(RM) -f $(OBJ)
 
 fclean: clean oclean
 
